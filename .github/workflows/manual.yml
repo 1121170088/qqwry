@@ -22,12 +22,15 @@ jobs:
             ls -alh
             zip -r pure.zip pure.txt
           fi
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.RELEASE_NAME }}
-          path: |
-            pure.zip
-          if-no-files-found: error
+      - uses: softprops/action-gh-release@v1
+          with:
+            files: |
+              pure.zip
+              app/qqwry.dat
+            draft: false
+            name: ${{ env.RELEASE_NAME }}
+            tag_name: v1.0.0
+
 
 
 
