@@ -2,7 +2,10 @@
 
 echo $(date)
 
-sudo apt install innoextract unzip jq zip
+sudo apt install unzip jq zip wget -y
+
+wget https://github.com/dscharrer/innoextract/releases/download/1.9/innoextract-1.9-linux.tar.xz
+tar xf innoextract-1.9-linux.tar.xz
 
 getRelaseName() {
     info=$(curl https://api.github.com/repos/1121170088/qqwry/releases/latest)
@@ -22,9 +25,9 @@ then
   releasePage=$(echo $releasePage | sed 's/http/https/')
   page=$(curl "$releasePage")
   downloadUrl=$(echo $page  | grep -Po 'https://www.cz88.net/soft/.*?\.zip')
-  curl "$downloading" -o 1.zip
+  curl "$downloadUrl" -o 1.zip
   unzip 1.zip
-  innoextract setup.exe
+  ./innoextract-1.9-linux/innoextract setup.exe
   echo "RELEASE_NAME=$lastestName" >> $GITHUB_ENV
 else
   echo "both names are same."
