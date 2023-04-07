@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.19.1'
+
+      - uses: actions/checkout@v3
+
+      - run: |
+          cd $GITHUB_WORKSPACE
+          pwd
+          chmod +x ./getDat.sh
+          ./getDat.sh
+          ls -alh
+          if [ -e app ]
+          then
+            go test -run TestConvert bat2txt/convert_test.go
+            ls -alh
+            zip -r pure.zip pure.txt
+          fi
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.RELEASE_NAME }}
+          path: |
+            pure.zip
+          if-no-files-found: error
+
+
+
