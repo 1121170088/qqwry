@@ -18,7 +18,7 @@ jobs:
           ls -alh
           if [ -e app ]
           then
-            go test -run TestConvert bat2txt/convert_test.go
+            go test -run Convert qqwry/bat2txt
             ls -alh
             zip -r pure.zip pure.txt
           fi
