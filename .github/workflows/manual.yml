@@ -23,13 +23,13 @@ jobs:
             zip -r pure.zip pure.txt
           fi
       - uses: softprops/action-gh-release@v1
-          with:
-            files: |
-              pure.zip
-              app/qqwry.dat
-            draft: false
-            name: ${{ env.RELEASE_NAME }}
-            tag_name: v1.0.0
+        with:
+          files: |
+            pure.zip
+            app/qqwry.dat
+          draft: false
+          name: ${{ env.RELEASE_NAME }}
+          tag_name: v1.0.0
 
 
 
