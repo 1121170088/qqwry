@@ -2,9 +2,9 @@
 
 echo $(date)
 
-apt install innoextract unzip jq zip
+sudo apt install innoextract unzip jq zip
 
-function getRelaseName() {
+function getRelaseName {
     info=$(curl https://api.github.com/repos/1121170088/qqwry/releases/latest)
     echo $info | jq -r '.name'
 }
