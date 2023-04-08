@@ -1,0 +1,31 @@
+name: release-action
+description: for release
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-go@v3
+      with:
+        go-version: '1.19.1'
+
+    - uses: actions/checkout@v3
+
+    - run: |
+        cd $GITHUB_WORKSPACE
+        pwd
+        chmod +x ./getDat.sh
+        ./getDat.sh
+        ls -alh
+        if [ -e app ]
+        then
+          go test -run Convert qqwry/bat2txt
+          ls -alh
+          zip -r pure.zip pure.txt
+        fi
+    - uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          pure.zip
+          app/qqwry.dat
+        draft: false
+        name: ${{ env.RELEASE_NAME }}
+        tag_name: v1.0.0
