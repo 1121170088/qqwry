@@ -17,3 +17,10 @@ vendor
 test/config/cache*
 
 bin
+
+app
+*.json
+*.txt
+*.zip
+*.exe
+
