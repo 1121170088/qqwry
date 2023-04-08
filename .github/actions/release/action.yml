@@ -21,6 +21,7 @@ runs:
           ls -alh
           zip -r pure.zip pure.txt
         fi
+      shell: bash
     - uses: softprops/action-gh-release@v1
       with:
         files: |
