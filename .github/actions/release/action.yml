@@ -12,8 +12,10 @@ runs:
     - run: |
         cd $GITHUB_WORKSPACE
         pwd
-        chmod +x ./getDat.sh
-        ./getDat.sh
+        #chmod +x ./getDat.sh
+        #./getDat.sh
+        chmod +x ./getDat2.sh
+        ./getDat2.sh
         ls -alh
         if [ -e app ]
         then
